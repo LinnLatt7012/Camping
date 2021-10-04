@@ -1,4 +1,5 @@
 var express = require("express"),
+    port = process.env.PORT || 8080;
     app = express(),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
@@ -16,7 +17,8 @@ var commentRoutes       = require("./routes/comment"),
     indexRoutes         = require("./routes/index");
 
 
-mongoose.connect('mongodb://localhost:27017/Yelp_app_v7', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://admin:linn@7012@cluster0.3dxqv.mongodb.net/Cluster0?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
@@ -57,6 +59,6 @@ app.use("/campgrounds",campgroundRoutes);
 // ========================
 // Port listen
 // =========================
-app.listen(8080, function () {
+app.listen(port, function () {
     console.log("sever-started");
 })
